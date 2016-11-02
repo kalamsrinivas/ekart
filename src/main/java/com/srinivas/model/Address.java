@@ -1,9 +1,5 @@
 package com.srinivas.model;
 
-import javax.persistence.Entity;
-
-
-@Entity
 public class Address {
 	private int id;
 	private String street;

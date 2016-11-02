@@ -1,38 +1,27 @@
 package com.srinivas.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
-@Entity
 public class Customer {
 
-    private long custId;
+    private long cust_id;
     private String name;
     private int age;
-    
-    @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinTable(name="address", joinColumns = {@JoinColumn(name = "cust_Id", referencedColumnName = "cust_id") }, inverseJoinColumns = { @JoinColumn(name = "id", referencedColumnName = "id") })
     private Address address;
 
     public Customer(){
     }
   
     public Customer(long custId, String name, int age, Address address) {
-        this.custId = custId;
+        this.cust_id = custId;
         this.name = name;
         this.age = age;
         this.address = address;
     }
   
     public long getCustId() {
-        return custId;
+        return cust_id;
     }
     public void setCustId(long custId) {
-        this.custId = custId;
+        this.cust_id = custId;
     }
     public String getName() {
         return name;
@@ -57,7 +46,7 @@ public class Customer {
 
 	@Override
     public String toString() {
-        return "Customer [age=" + age + ", custId=" + custId + ", name=" + name
+        return "Customer [age=" + age + ", custId=" + cust_id + ", name=" + name
         + "]";
     }
 }
