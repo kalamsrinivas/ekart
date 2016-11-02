@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.srinivas.dao.CustomerDao;
+import com.srinivas.model.Address;
 import com.srinivas.model.Customer;
 
 @Repository
@@ -37,8 +38,8 @@ public class CustomerDaoImpl extends JdbcDaoSupport implements CustomerDao{
 
 	@Override
 	public List<Customer> getCustomers() {
-		String sql = "SELECT * from customer";
-		return (List<Customer>) getJdbcTemplate().query(sql, new CustomerMapper());
+		String getCustomerSql = "SELECT * from customer c, address a where c.cust_id = a.id";
+		return (List<Customer>) getJdbcTemplate().query(getCustomerSql, new CustomerMapper());
 	}
 
 	private static final class CustomerMapper implements RowMapper<Customer> {
@@ -46,9 +47,14 @@ public class CustomerDaoImpl extends JdbcDaoSupport implements CustomerDao{
 		@Override
 		public Customer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 			Customer customer = new Customer();
+			Address address = new Address();
 			customer.setCustId(resultSet.getInt("CUST_ID"));
 			customer.setAge(resultSet.getInt("AGE"));
 			customer.setName(resultSet.getString("NAME"));
+			address.setId(resultSet.getInt("ID"));
+			address.setStreet(resultSet.getString("STREET"));
+			address.setZip(resultSet.getInt("ZIP"));
+			customer.setAddress(address);
 			return customer;
 		}
 	}

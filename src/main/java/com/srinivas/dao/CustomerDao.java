@@ -6,6 +6,6 @@ import com.srinivas.model.Customer;
 
 
 public interface CustomerDao {
-	void insert(Customer cus);
+	public void insert(Customer cus);
 	public List<Customer> getCustomers();
 }
