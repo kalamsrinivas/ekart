@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS address;
 
 CREATE TABLE address (
@@ -5,8 +6,6 @@ CREATE TABLE address (
 	street varchar(20) NOT NULL,
 	zip int NOT NULL
 );
-
-DROP TABLE IF EXISTS customer;
 
 CREATE TABLE customer (
     CUST_ID serial PRIMARY KEY NOT NULL,
