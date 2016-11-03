@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS address;
 
 CREATE TABLE address (
 	id serial PRIMARY KEY NOT NULL,
-	street varchar(20) NOT NULL,
+	street varchar(50) NOT NULL,
 	zip int NOT NULL
 );
 

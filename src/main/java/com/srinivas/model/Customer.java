@@ -1,5 +1,8 @@
 package com.srinivas.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Customer {
 
     private long cust_id;
@@ -17,16 +20,20 @@ public class Customer {
         this.address = address;
     }
   
-    public long getCustId() {
-        return cust_id;
-    }
-    public void setCustId(long custId) {
-        this.cust_id = custId;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public long getCust_id() {
+		return cust_id;
+	}
+
+	public void setCust_id(long cust_id) {
+		this.cust_id = cust_id;
+	}
     public String getName() {
         return name;
     }
-    public void setName(String name) {
+
+	public void setName(String name) {
         this.name = name;
     }
     public int getAge() {
@@ -35,7 +42,9 @@ public class Customer {
     public void setAge(int age) {
         this.age = age;
     }
- 
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     public Address getAddress() {
 		return address;
 	}
